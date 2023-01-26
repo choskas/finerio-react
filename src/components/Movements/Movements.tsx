@@ -32,18 +32,7 @@ const Movements = () => {
     const data = await userData(sessionStorage.getItem("TOKEN") as string);
     setUser(data);
     await fetchMovements(data.id);
-    const isInBottom = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 10
-      ) {
-        let newCounter = tableCounter + 10;
-        setTableCounter((prevState) => prevState + 5);
-        fetchMovements(data.id, newCounter);
-        window.removeEventListener("scroll", isInBottom);
-      }
-    };
-    window.addEventListener("scroll", isInBottom);
+
 } catch (error) {
     navigate("/");
 }
@@ -56,6 +45,20 @@ const Movements = () => {
   useEffect(() => {
     getInitialInfo();
   }, []);
+  useEffect(() => {
+    const isInBottom = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight 
+      ) {
+        let newCounter = tableCounter + 10;
+        setTableCounter((prevState) => prevState + 5);
+        fetchMovements(user ? user.id : '', newCounter);
+        window.removeEventListener("scroll", isInBottom);
+      }
+    };
+    window.addEventListener("scroll", isInBottom);
+  }, [movements])
   if (!sessionStorage.getItem('TOKEN')){
     return <Navigate to='/' />
   }
