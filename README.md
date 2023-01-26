@@ -16,7 +16,7 @@ npm start
 
 ### Herramientas usadas
 
-Por cuestiones de tiempo el proyecto fue construido bajo CRA, añadiendole el template de typescript
+Por cuestiones de tiempo el proyecto fue construido bajo CRA, añadiendole el template de typescript, tambien trate de vitar el uso de context o Redux, y mejor usar el session storage para esos fines dado que es una app sencilla
 
 Las demas herramientas que se usaron fueron las siguientes:
 
